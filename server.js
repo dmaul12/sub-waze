@@ -6,6 +6,9 @@ const path            = require('path')
 const app             = express()
 const issues          = require('./routes/issues')
 const PORT            = process.env.PORT || process.argv[2] || 3000
+const env             = process.env.ENV_PROD || 'dev'
+// don't need below
+const isProd          = env === 'Production'
 
 // set up logging so that we can see what's happening
 app.use( logger('dev') )
@@ -19,7 +22,12 @@ app.use(express.static(path.join(__dirname,'public')));
 
 
 app.listen(PORT, function(){
-  console.log("server up and running on port ", PORT)
+
+  // can just console log
+  if(!isProd){
+    console.log("server up and running on port ", PORT)
+  }
+
 })
 
 /* ROUTES */
