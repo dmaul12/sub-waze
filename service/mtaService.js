@@ -1,7 +1,7 @@
 //es6 uses deconstructors
 const {MongoClient}    = require('mongodb')
 
-const dbConnection   = 'mongodb://localhost:27017/transit'
+const dbConnection   = process.env['MONGODB_URI'] || 'mongodb://localhost:27017/transit'
 
 
 module.exports = {
